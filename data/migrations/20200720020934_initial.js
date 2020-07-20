@@ -1,49 +1,36 @@
 exports.up = async function (knex) {
   await knex.schema.createTable('project', tbl => {
-    tbl.increments(),
+    tbl.increments("id"),
       tbl.text('name').notNull(),
       tbl.text('description'),
       tbl.boolean('completed').defaultTo(false);
   });
-  await knex.schema.createTable('tasks', tbl => {
-    tbl.increments(),
-      tbl
-        .integer('project_id')
-        .references('id')
-        .inTable('project')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-    tbl.text('discription').notNullable(),
-      tbl.text('notes'),
-      tbl.boolean('completed').defaultTo(false);
-  });
-
-  await knex.schema.createTable('resources', tbl => {
-    tbl.increments()
-    tbl.text('name').notNull()
-    tbl.text('description')
-  });
-
-  await knex.schema.createTable('project_resources', tbl => {
+  await knex.schema.createTable("tasks", tbl => {
+    tbl.increments("id")
     tbl
-      .integer('project_id')
-      .references('id')
-      .inTable('project')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    tbl
-      .integer('resource_id')
-      .references('id')
-      .inTable('resources')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE');
-    tbl.primary(['project_id', 'resource_id']);
-  });
-};
+        .integer("project_id")
+        .references("id")
+        .inTable("project")
+        .notNull()
+    tbl.text("description").notNull()
+    tbl.text("notes")
+    tbl.bool("completed").defaultTo(false)
+})    
 
-exports.down = async function (knex) {
-  await knex.schema.dropTableIfExists('project_resources');
-  await knex.schema.dropTableIfExists('resources');
-  await knex.schema.dropTableIfExists('tasks');
-  await knex.schema.dropTableIfExists('project');
-};
+  await knex.schema.createTable("resources", tbl => {
+    tbl.increments("id")
+    tbl
+        .integer("project_id")
+        .references("id")
+        .inTable("project")
+        .notNull()
+    tbl.text("name").notNull()
+    tbl.text("description")
+})
+}
+
+exports.down = async function(knex) {
+  await knex.schema.dropTableIfExists("tasks")
+  await knex.schema.dropTableIfExists("resources")    
+  await knex.schema.dropTableIfExists("project")    
+}
