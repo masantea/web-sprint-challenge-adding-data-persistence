@@ -47,12 +47,16 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between `Relational Databases` and `SQL`.
+- A relational database is a type of database that stores and provides access to data points that are related to one another. SQL is a language
 
 2. Why do tables need a `primary key`?
+- it is a way to identify each entry in the database uniquely. 
 
 3. What is the name given to a table column that references the primary key on another table.
+- A Foreign key
 
 4. What do we need in order to have a _many to many_ relationship between two tables.
+ - an intermidary table
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
@@ -99,6 +103,7 @@ After finishing your required elements, you can push your work further. These go
 - [ ] Add an endpoint to get a list of project tasks.
 - [ ] Add an endpoint to see all projects using a particular resource.
 - [ ] Add support for assigning `resources` directly to `tasks` in addition to adding them to `projects`
+
 
 ## Submission format
 
